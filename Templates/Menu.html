@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+<body>
+    <div class="navbar">
+		<button onclick="location.href='{{ url_for('index') }}'"><img src="{{ url_for('static', filename='Images/FoodGasm.png') }}" class="logo" align="top"></button>
+ <div class="wrap">
+            <div class="search">
+                <input type="text" class="searchTerm" align="top" placeholder="It's a FoodGasam Everytime">
+                <button type="submit" class="searchButton" align="top">
+                <i class="fa fa-search" ></i>
+                </button>
+            </div>
+        </div>
+        
+		<ul>
+			
+			<li><button type="button"><a href="{{ url_for('Menu') }}">Menu</a></button></li>
+			<li><button type="button"><a href="{{ url_for('signin') }}">SIGNUP</a></li>
+			<li><button type="button"><a href="#" onclick="location.href='{{ url_for('login') }}';">LOGIN</a></button></b></li>
+		</ul>
+</div>
+<h1 style="text-align:center; font-size: 48px; color: #c62828; text-shadow: 2px 2px 2px #000; font-family: 'Brush Script MT', cursive;">"Our Menu"</h1>
+
+</body>
+</html>
