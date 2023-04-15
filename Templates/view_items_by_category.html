@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+   <body>
+   
+      <form action="{{ url_for('view_items_by_category') }}" method="GET">
+         <label for="category">Select category:</label>
+         <select name="category" id="category">
+            <option value="Starter">Starter</option>
+            <option value="Biriyanis">Biriyanis</option>
+         </select>
+         <input type="submit" value="Submit">
+      </form>
+      
+      <br>
+      
+      <table border="1">
+         <thead>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Image</th>
+         </thead>
+         
+         {% for row in rows %}
+            <tr>
+               <td>{{ row["item_name"] }}</td>
+               <td>{{ row["price"] }}</td>
+               <td><img src="{{ url_for('get_image', filename=row['item_image']) }}"></td>
+	
+            </tr>
+         {% endfor %}
+      </table>
+      
+      <br><br>
+      <a href="/">Go back to home page</a>
+      
+   </body>
+</html>

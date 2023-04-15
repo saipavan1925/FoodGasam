@@ -6,26 +6,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='aboutus.css') }}">
     </head>
     <body>
-        <div  class="navbar">
-            <button><img src="{{ url_for('static', filename='Images/FoodGasm.png') }}" class="logo" align="top" ></button>
-             <div class="wrap">
-                <div class="search">
-                    <input type="text" class="searchTerm" align="top" placeholder="It's a FoodGasam Everytime">
-                    <button type="submit" class="searchButton" align="top">
-                    <i class="fa fa-search" ></i>
-                    </button>
-                </div>
-            </div>
-            <ul>
-                
-                <li><button type="button"><a href="{{ url_for('Menu') }}">Menu</a></button></li>
-                <li><button type="button"><a href="{{ url_for('signin') }}">SIGNIN</a></button></li>
-                <li><button type="button"><a href="#" onclick="location.href='{{ url_for('login') }}';">LOGIN</a></button></li>
-            </ul>
-        </div>   
-
+        {% include 'navbar.html' %}
         <div style="background: linear-gradient(to right, #fdcbf1, #a6c1ee);margin-left: 15px; margin-right: 15px; padding: 40px;">
-            <h1 style="color: #fff; text-align: center; font-size: 36px; font-family: Arial, sans-serif; margin: 0;">Discover the Rich Flavors and Spices of Indian Cuisine at FoodGasam's Newest Addition: An Authentic Indian Cuisine Restaurant</h1>
+            <h1 style="color: #fff; text-align: center; font-size: 36px; font-family: Arial, sans-serif; margin: 0;">Discover the Rich Flavors and Spices of Indian Cuisine at FoodGasm's Newest Addition: An Authentic Indian Cuisine Restaurant</h1>
             <p style="color: #fff; text-align: center; font-size: 18px; font-family: Verdana, Geneva, Tahoma, sans-serif; margin-top: 20px;">Experience our comfortable and relaxed environment as you indulge in classic Indian dishes made with the freshest ingredients and prepared by our talented chefs. From delicious samosas to fragrant biriyanis, there's something for every palate. Whether you're a seasoned fan of Indian cuisine or trying it for the first time, come and savor the flavors of FoodGasam's Indian Cuisine restaurant.</p>
         </div>
         <div style="margin-top: 50px; margin-bottom: 40px;">

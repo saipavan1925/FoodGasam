@@ -5,6 +5,7 @@
     
 	<title>Login Page</title>
 	<style>
+		
 		body {
 			font-family: Arial, sans-serif;
 			background-color: #f4f4f4;
@@ -36,15 +37,7 @@
 	</style>
 </head>
 <body>
-	<div  class="navbar">
-		<button><img src="{{ url_for('static', filename='Images/FoodGasm.png') }}" class="logo" align="top" ></button>
-		<ul>
-			
-			<li><button type="button"><a href="{{ url_for('Menu') }}">Menu</a></button></li>
-			<li><button type="button"><a href="{{ url_for('signin') }}">SIGNIN</a></button></li>
-			<li><button type="button"><a href="#" onclick="location.href='{{ url_for('login') }}';">LOGIN</a></button></li>
-		</ul>
-	</div>  
+	{% include 'navbar.html' %}
 	<div class="container">
 		<h1>Login</h1>
 		<form>

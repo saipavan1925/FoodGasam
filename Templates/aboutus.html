@@ -74,23 +74,7 @@
     </style>
 </head>
 <body>
-    <div  class="navbar">
-        <button onclick="location.href='index.html'"><img src="{{ url_for('static', filename='images/FoodGasm.png') }}" class="logo" align="top" ></button>
-        <div class="wrap">
-            <div class="search">
-                <input type="text" class="searchTerm" align="top" placeholder="It's a FoodGasam Everytime">
-                <button type="submit" class="searchButton" align="top">
-                <i class="fa fa-search" ></i>
-                </button>
-            </div>
-        </div>
-        <ul>
-            
-            <li><button type="button"><a href="Menu.html">Menu</a></button></li>
-            <li><button type="button"><a herf="index.html">SIGNUP</a></li>
-            <li><button type="button"><a herf="#">LOGIN</a></li>
-        </ul>
-    </div>   
+    {% include 'navbar.html' %}
     <h1>Meet Our Team</h1>
     <div class="row">
         <div class="card">

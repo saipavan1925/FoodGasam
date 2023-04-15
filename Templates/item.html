@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+   <body>
+   
+      <form action="{{ url_for('add_item') }}" method="POST" enctype="multipart/form-data">
+         <h3>Item Information</h3>
+         <label for="category">Select category:</label>
+         <select name="category" id="category">
+            <option value="Starter">Starter</option>
+            <option value="Biriyanis">Biriyanis</option>
+         </select><br><br>
+         Item Name:<br>
+         <input type="text" name="item_name"><br><br>
+         
+         Price:<br>
+         <input type="number" name="price"><br><br>
+         
+         Item Image:<br>
+         <input type="file" name="item_image"><br><br>
+         
+         <input type="submit" value="Submit">
+      </form>
+      
+      <br><br>
+      <a href="/">Go back to home page</a>
+      
+   </body>
+</html>
