@@ -1,5 +1,8 @@
 import configparser
+import io 
+from PIL import Image
 from multiprocessing import connection
+from typing import ItemsView
 from flask import Flask, Response, redirect, render_template, request, url_for
 
 import sqlite3
@@ -55,14 +58,14 @@ import sqlite3
 
 conn = sqlite3.connect('database.db')
 print("Opened database successfully")
-
-"""conn.execute('''CREATE TABLE items
+conn.execute('DROP TABLE IF EXISTS items')
+conn.commit()
+conn.execute('''CREATE TABLE items 
              (id INTEGER PRIMARY KEY,
              category TEXT,
              item_name TEXT,
-             price REAL,
-             item_image BLOB);''')
-print("Table created successfully")"""
+             price REAL);''')
+print("Table created successfully")
 
 conn.close()
 
@@ -77,12 +80,12 @@ def add_item():
             category = request.form['category']
             item_name = request.form['item_name']
             price = request.form['price']
-            item_image = request.files['item_image'].read()
+           
             
             with sqlite3.connect('database.db') as con:
                 cur = con.cursor()
-                cur.execute("INSERT INTO items (category, item_name, price, item_image) VALUES (?, ?, ?, ?)", 
-                            (category, item_name, price, item_image))
+                cur.execute("INSERT INTO items (category, item_name, price) VALUES (?, ?, ?)", 
+                            (category, item_name, price))
                 
                 con.commit()
                 msg = "Record successfully added"
@@ -96,16 +99,35 @@ def add_item():
    
 @app.route('/view_items_by_category', methods=['GET'])
 def view_items_by_category():
-    category = request.args.get('category')
-    with sqlite3.connect('database.db') as con:
-        cur = con.cursor()
-        cur.execute("SELECT item_name, price, item_image FROM items WHERE category = ?", (category,))
-        rows = cur.fetchall()
-    return render_template('view_items_by_category.html', rows=rows)
+    ##category = request.args.get('category')
+   # with sqlite3.connect('database.db') as con:
+    con = sqlite3.connect('database.db')
+    con.row_factory = sqlite3.Row
+    cur = con.cursor()
+    cur.execute("SELECT item_name, price,item_image FROM items")
+    image_data = cur.fetchone()[2]
+    image = Image.open(io.BytesIO(image_data)) 
+  
+
+        ##cur.execute("SELECT item_name, price FROM items WHERE category = ?", (category,))
+    rows = cur.fetchall();
+    return render_template('view_items_by_category.html', rows = rows)
 
 
-
-
+"""@app.route('/view_items_by_category', methods=['GET'])
+def view_items_by_category():
+    con = sqlite3.connect('database.db')
+    con.row_factory = sqlite3.Row
+    cur = con.cursor()
+    cur.execute("SELECT item_name, price, item_image FROM items")
+    rows = cur.fetchall()
+    
+    for row in rows:
+        image_data = row['item_image']
+        image = Image.open(io.BytesIO(image_data))
+        row['item_image'] = image
+    
+    return render_template('view_items_by_category.html', rows=rows)"""""
 
 
 
@@ -135,7 +157,7 @@ def view_items_by_category():
 
 
 #------to delete the db--------------   
-"""import os
+import os
 import sqlite3
 
 # Close any open connections to the database
@@ -148,4 +170,4 @@ conn.execute("DROP TABLE items")
 conn.close()
 
 # Delete the database file
-os.remove('database.db')"""
+os.remove('database.db')
