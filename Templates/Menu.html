@@ -1,12 +1,94 @@
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='Menu.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
+    <script>
+        let cart = [];
+        let total = 0;
+        
+        function addToCart(item) {
+            let quantitySelect = document.getElementById(`${item.name}-quantity`);
+            let quantity = parseInt(quantitySelect.value);
+            
+            if (quantity > 0) {
+                let itemIndex = cart.findIndex(cartItem => cartItem.name === item.name);
+                if (itemIndex !== -1) {
+                    cart[itemIndex].quantity += quantity;
+                } else {
+                    item.quantity = quantity;
+                    cart.push(item);
+                }
+
+                total += item.price * quantity;
+                document.getElementById('total-price').innerHTML = `Total Price: $${total.toFixed(2)}`;
+
+                alert(`${quantity} ${item.name} added to cart!`);
+            } else {
+                alert('Please select a quantity greater than zero.');
+            }
+        }
+        
+        function updateCart() {
+            let cartItems = document.getElementById('cart-items');
+            cartItems.innerHTML = '';
+
+            cart.forEach(cartItem => {
+                let li = document.createElement('li');
+                li.innerHTML = `${cartItem.name} x ${cartItem.quantity} - $${(cartItem.price * cartItem.quantity).toFixed(2)}`;
+                cartItems.appendChild(li);
+            });
+        }
+
+        function updateTotal() {
+            document.getElementById('total-price').innerHTML = `Total Price: $${total.toFixed(2)}`;
+        }
+
+        setInterval(() => {
+            updateCart();
+            updateTotal();
+        }, 100);
+    </script>
 </head>
 <body>
     {% include 'navbar.html' %}
 <h1 style="text-align:center; font-size: 48px; color: #c62828; text-shadow: 2px 2px 2px #000; font-family: 'Brush Script MT', cursive;">"Our Menu"</h1>
+<div>
+    <table border="1">
+        <thead>
+           <th>Category</th>
+           <th>Item Name</th>
+           <th>Price</th>
+           <th>Quantity</th>
+           <th>Add to Cart</th>
+          
+        </thead>
+        {% for row in rows %}
+        <tr>
+           <td>{{ row["category"] }}</td>
+           <td>{{ row["item_name"] }}</td>
+           <td>${{ row["price"] }}</td>
+           <td><select id="{{ row['item_name'] }}-quantity">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select></td>
+        <td><button onclick="addToCart({name: '{{ row['item_name'] }}', price: {{ row['price'] }} })">Add to Cart</button></td>
+           
+ </tr>
+          
+        {% endfor %}
+     </table>
+</div>
+
+<div id="cart">
+    <h2>Cart</h2>
+    <ul id="cart-items"></ul>
+    <div id="total-price"></div>
+</div>
 
 </body>
 </html>
