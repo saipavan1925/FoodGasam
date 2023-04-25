@@ -1,9 +1,17 @@
 <html>
     <head>
     <title>HTMl Practice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='aboutus.css') }}">
+    <style>
+    body {
+        background-image: url("{{ url_for('static', filename='images/background1.jpg') }}");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
     </head>
     <body>
         {% include 'navbar.html' %}
@@ -31,25 +39,25 @@
                 </div>
             </div>
             <div class="card">   
-                <a href="King_Fish_Fry.html"><img src="King_Fish_Fry.jpg" alt="Image 1"></a>
+                <a href="{{ url_for('king_fisher') }}"><img src="{{ url_for('static', filename='Images/King_fish_fry.jpg') }}" alt="Image 1"></a>
                 <div class="container">
                     <h3>King Fish Fry</h3>
                 </div>
             </div>
             <div class="card">   
-                <a href="Fish_Curry_Thali.html"><img src="Fish_Curry_Thali.jpg" alt="Image 1"></a>
+                <a href="{{ url_for('fish_curry_thali') }}"><img src="{{ url_for('static', filename='Images/fish_curry_thali.jpg') }}"  alt="Image 1"></a>
                 <div class="container">
                     <h3>Fish Curry Thali</h3>
                 </div>
             </div>
             <div class="card">   
-                <a href="Biriyani.html"><img src="Biriyani.jpg" alt="Image 1"></a>
+                <a href="{{ url_for('biriyani') }}"><img src="{{ url_for('static', filename='Images/biriyani.jpg') }}"  alt="Image 1"></a>
                 <div class="container">
                     <h3>Ambur Dum Biriyani</h3>
                 </div>
             </div>
             <div class="card">   
-                <a href="Prawns.html"><img src="Prawns.jpg" alt="Image 1"></a>
+                <a href="{{ url_for('prawns') }}"><img src="{{ url_for('static', filename='Images/prawns.jpg') }}"  alt="Image 1"></a>
                 <div class="container">
                     <h3>Chilli Prawns</h3>
                 </div>
@@ -58,21 +66,7 @@
         
         
       
-      <div class="about-us">
-        <a href="{{ url_for('aboutus') }}"><button type="button">About Us</button></a>
-        <p>Bringing together all the varieties of a country in one place could be an enriching experience for both locals and tourists, providing them with the opportunity to explore and learn about the diverse cultures, traditions, and cuisines of different regions. Such an initiative could also promote national unity and pride in the country's rich cultural heritage</p>
-        
-    <h1>Visit us@</h1>
-    <p>
-      FoodGasam<br>
-      901 fletcher Ave<br>
-      Tampa, USA 33612
-    </p>
-  
-
-        <p>Contact us at <a href="mailto:info@foodgasam.com">info@foodgasam.com</a> for any inquiries.</p>
-        <p>Follow us on instagram <a href="https://instagram.com/_oneslicemore?igshid=YmMyMTA2M2Y=">_oneslicemore</a></p>
-      </div>
+    {% include 'footer.html' %}
 
     </body>
 </html>

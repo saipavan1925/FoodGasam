@@ -2,10 +2,14 @@
 <head>
     <head>
         <title>HTMl Practice</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{{ url_for('static', filename='aboutus.css') }}">
         </head>
+        <style>
+            
+        </style>
 </head>
 <body>
     <div  class="navbar">
@@ -14,19 +18,12 @@
                 <img src="{{ url_for('static', filename='Images/FoodGasm.png') }}" class="logo" align="top" >
             </button>
         </a>
-         <!--<div class="wrap">
-            <div class="search">
-                <input type="text" class="searchTerm" align="top" placeholder="It's a FoodGasam Everytime">
-                <button type="submit" class="searchButton" align="top">
-                <i class="fa fa-search" ></i>
-                </button>
-            </div>
-        </div>-->
         <ul>
             
             <li><button type="button"><a href="{{ url_for('Menu') }}">Menu</a></button></li>
-            <li><button type="button"><a href="{{ url_for('signin') }}">SIGNIN</a></button></li>
-            <li><button type="button"><a href="#" onclick="location.href='{{ url_for('login') }}';">LOGIN</a></button></li>
+            <li><button type="button"><a href="{{ url_for('signin') }}">Signin</a></button></li>
+            <li><button type="button"><a href="#" onclick="location.href='{{ url_for('login') }}';">login</a></button></li>
+            <li><button type="button"><a href="{{ url_for('aboutus') }}">About Us</a></button></li>
         </ul>
     </div>  
     

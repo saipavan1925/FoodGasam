@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-   return "Hello, Flask!"
+   return render_template("index.html")
 
 @app.route("/index/")
 def index():
@@ -49,9 +49,25 @@ def login():
 @app.route('/Dosa')
 def Dosa():
     return render_template('Dosa.html')
+
 @app.route('/Paneer_Tikka')
 def paneer_tikka():
     return render_template('Paneer_Tikka.html')
+
+@app.route('/king_fisher')
+def king_fisher():
+    return render_template('king_fish_Fry.html')
+
+@app.route('/fish_curry_thali')
+def fish_curry_thali():
+    return render_template('fish_curry_thali.html')
+
+@app.route('/biriyani')
+def biriyani():
+    return render_template('biriyani.html')
+@app.route('/prawns')
+def prawns():
+    return render_template('prawns.html')
 #------------SignUp----
 @app.route('/signup')
 def signup():
@@ -105,6 +121,17 @@ def add_item():
         
 
 
+@app.route('/checkout', methods=['GET', 'POST'])
+def checkout():
+    if request.method == 'POST':
+        # Process the form data and complete the checkout
+        # Redirect to a confirmation page or back to the homepage
+        # Here you can add the code to process the form data and complete the checkout,
+        # then redirect to a confirmation page or back to the homepage, depending on
+        # whether the checkout was successful or not.
+
+    # If the request method is GET, render the checkout page
+     return render_template('checkout.html', cart=cart, total=total)
 
 
 
